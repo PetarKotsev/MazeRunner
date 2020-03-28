@@ -36,6 +36,9 @@
     <ClCompile Include="MazeRunner.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="openbgi-sources-1.5\openbgi\library\graphics.h">
@@ -65,5 +68,8 @@
     <ClInclude Include="CellPosition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

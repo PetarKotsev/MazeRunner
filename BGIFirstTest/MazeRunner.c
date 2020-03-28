@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>
@@ -29,6 +28,7 @@ void setToNormalSettings() {
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 4);
 	settextjustify(LEFT_TEXT, LEFT_TEXT);
 }
+
 
 int main() {
 	initDriver();

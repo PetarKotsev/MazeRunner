@@ -1,25 +1,27 @@
 #pragma once
+#include "grid.h"
+#include "CellPosition.h"
+
 /* Code inspired from: 
 https://www.tutorialspoint.com/data_structures_algorithms/stack_program_in_c.htm
 added dynamic allocation
 */
 
-//int MAXSIZE = 1600;
-//Cell stack[1600];
-//int top = -1;
 
-typedef struct {
+typedef struct CellPosStack {
 	int size;
 	int top;
 	CellPos * stack;
+	CellGrid * grid;
 }	CellPosStack;
 
-CellPos * newCellPosStack(CellPosStack * cs, int size) {
-	cs->size = size;
+CellPos * newCellPosStack(CellPosStack * cs, CellGrid * grid) {
+	cs->size = grid->xUnits * grid->yUnits;
 	cs->top = -1;
-	cs->stack = (CellPos*) calloc(size, sizeof(CellPos));
+	cs->grid = grid;
+	cs->stack = (CellPos*) calloc(cs->size, sizeof(CellPos));
 	if (cs->stack == NULL) {
-		perror("Unsuccessfull allocation of memory for the stack");
+		printf("Unsuccessfull allocation of memory for the stack");
 		return NULL;
 	}
 	return cs->stack;
@@ -28,7 +30,7 @@ CellPos * newCellPosStack(CellPosStack * cs, int size) {
 CellPos * changeCellPosStackSize(CellPosStack * cs, int newSize) {
 	cs->stack = realloc(cs->stack, newSize);
 	if (cs->stack == NULL) {
-		perror("Unsuccessfull allocation of memory for the stack");
+		printf("Unsuccessfull allocation of memory for the stack");
 		return NULL;
 	}
 	return cs->stack;
@@ -50,9 +52,10 @@ bool isFull(CellPosStack * cellPosStack) {
 }
 
 CellPos * peek(CellPosStack * cellPosStack) {
-	CellPos t;
-	setCellPos(&t, cellPosStack->stack[cellPosStack->top].col, cellPosStack->stack[cellPosStack->top].row);
-	return &t;
+	/*CellPos t;
+	setCellPos(cellPosStack->grid, &t, cellPosStack->stack[cellPosStack->top].col, cellPosStack->stack[cellPosStack->top].row);
+	return &t;*/
+	return (&cellPosStack->stack[cellPosStack->top]);
 }
 
 CellPos * pop(CellPosStack * cellPosStack) {
@@ -72,7 +75,7 @@ CellPos * push(CellPosStack * to, CellPos * cptr) {
 
 	if (!isFull(to)) {
 		to->top += 1;
-		setCellPos(&to->stack[to->top], cptr->col, cptr->row);
+		setCellPos(to->grid, &to->stack[to->top], cptr->col, cptr->row);
 		return &to->stack[to->top];
 	}
 	else {

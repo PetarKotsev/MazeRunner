@@ -1,11 +1,12 @@
 #pragma once
 #include "grid.h"
 #include "CellPosStack.h"
+#include "CellPosition.h"
 
-static CellPos currentCurPos;
-static CellPos nextCurPos;
+CellPos currentCurPos;
+CellPos nextCurPos;
 
-int setCursorPos(CellPos* cp);
+int setCursorPos(CellGrid *grid, CellPos* cp);
 bool hasUnvisitedNeighbours(CellGrid * grid, CellPos * cp);
 void choseNeighbour(CellGrid * grid, CellPos * cp);
 void destroyWallBetween(CellGrid * grid, CellPos *from, CellPos *to);
@@ -19,15 +20,15 @@ void generateMaze(CellGrid * grid) {
 	srand(time(NULL));
 	newCellPos(grid, &currentCurPos, 0 , 0); // setting the initial start Cell
 	/*setToVisitedFromGenerator(getCellAtPosition(grid, &currentCurPos));*/ 
-	setGridCellToVisited(&currentCurPos);  // Setting current Cell to visited
+	setGridCellToVisited(grid, &currentCurPos);  // Setting current Cell to visited
 
 	//Initialize stack
 	CellPosStack stack;
-
-	if (newCellPosStack(&stack, grid->xUnits * grid->yUnits) == NULL) {
+	printf("%d", grid->xUnits * grid->yUnits);
+	if (newCellPosStack(&stack, grid) == NULL) {
 		printf("Problem allocating stack");
 	}
-	// ToDo: push CurrntCell to the stack
+	// push CurrntCell to the stack
 	push(&stack, &currentCurPos);
 
 	bool index = true;
@@ -40,7 +41,7 @@ void generateMaze(CellGrid * grid) {
 		clearviewport();
 		
 		// ToDo: pop from stack
-		setCellPos(&currentCurPos, peek(&stack)->col, peek(&stack)->row);
+		setCellPos(grid, &currentCurPos, peek(&stack)->col, peek(&stack)->row);
 		pop(&stack);
 
 
@@ -52,12 +53,12 @@ void generateMaze(CellGrid * grid) {
 			destroyWallBetween(grid, &currentCurPos, &nextCurPos);
 			setGridCellToVisited(grid, &nextCurPos);
 			push(&stack, &nextCurPos);
-			setCellPos(&currentCurPos, nextCurPos.col, nextCurPos.row);
+			setCellPos(grid, &currentCurPos, nextCurPos.col, nextCurPos.row);
 		}
-		setCursorPos(&currentCurPos);
+		setCursorPos(grid, &currentCurPos);
 
 		drawGrid(grid);
-		drawGridCell(grid, &currentCurPos, rgb(255, 255, 255));
+		drawGridCell(grid, currentCurPos.col, currentCurPos.row, rgb(255, 255, 255));
 
 		/* Animation statements */
 		setvisualpage(index);
@@ -66,8 +67,8 @@ void generateMaze(CellGrid * grid) {
 	}
 }
 
-int setCursorPos(CellPos * cp) {
-	return setCellPos(&currentCurPos, cp->col, cp->row);
+int setCursorPos(CellGrid * grid, CellPos * cp) {
+	return setCellPos(grid, &currentCurPos, cp->col, cp->row);
 }
 
 bool hasUnvisitedNeighbours(CellGrid * grid, CellPos * cp) {
@@ -140,19 +141,19 @@ void choseNeighbour(CellGrid * grid,CellPos * cp) {
 
 void destroyWallBetween(CellGrid * grid, CellPos *from, CellPos * to) {
 	if (from->col > to->col) {
-		destroyCellWall(grid, from, LEFT_WALL);
-		destroyCellWall(grid, to, RIGHT_WALL);
+		destroyCellWall(grid, from->col, from->col, LEFT_WALL);
+		destroyCellWall(grid, to->col, to->row, RIGHT_WALL);
 	}
 	else if (from->col < to->col) {
-		destroyCellWall(grid, from, RIGHT_WALL);
-		destroyCellWall(grid, to, LEFT_WALL);
+		destroyCellWall(grid, from->col, from->row, RIGHT_WALL);
+		destroyCellWall(grid, to->col, to->row, LEFT_WALL);
 	}
 	else if (from->row > to->row) {
-		destroyCellWall(grid, from, TOP_WALL);
-		destroyCellWall(grid, to, BOTTOM_WALL);
+		destroyCellWall(grid, from->col, from->row, TOP_WALL);
+		destroyCellWall(grid, to->col, to->row, BOTTOM_WALL);
 	}
 	else if (from->row < to->row) {
-		destroyCellWall(grid, from, BOTTOM_WALL);
-		destroyCellWall(grid, to, TOP_WALL);
+		destroyCellWall(grid, from->col, from->row, BOTTOM_WALL);
+		destroyCellWall(grid, to->col, to->row, TOP_WALL);
 	}
 }

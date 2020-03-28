@@ -20,7 +20,7 @@ enum gameState {
 	QUIT
 };
 
-enum gameState globalState = WELCOME_SCREEN;
+enum gameState globalState = INITIALIZE_GAME_SCREEN_LEVEL_1;
 /*	Read state	*/
 
 void readKeyboard();
@@ -47,7 +47,8 @@ void readState() {
 		readKeyboard();
 		break;
 	case GENETARE_MAZE:
-		//generateMaze();
+		newCellGrid(&grid, 20, 60, 20, 2, 2, 33, 20);
+		generateMaze(&grid);
 		globalState = RUN;
 		break;
 	case RUN:

@@ -153,6 +153,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cell.c" />
     <ClCompile Include="MazeRunner.c" />
     <ClCompile Include="openbgi-sources-1.5\openbgi\library\BGI.C" />
     <ClCompile Include="openbgi-sources-1.5\openbgi\library\Client.c" />
@@ -170,6 +171,9 @@
     <ClInclude Include="openbgi-sources-1.5\openbgi\library\graphics.h" />
     <ClInclude Include="Read.h" />
     <ClInclude Include="WelcomeScreen.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

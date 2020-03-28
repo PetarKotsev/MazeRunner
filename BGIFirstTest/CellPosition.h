@@ -1,13 +1,5 @@
 #pragma once
-/*
-*	Point variable
-*/
-
-typedef struct Point
-{
-	int x;
-	int y;
-} Point;
+#include "grid.h"
 
 /*
 *	Cell position
@@ -18,9 +10,9 @@ typedef struct {
 	int row; // y axis
 } CellPos;
 
-int newCellPos(CellPos *cp, int col, int row) {
-	if (col >= 0 && col < cp->grid->xUnits &&
-		row >= 0 && row < cp->grid->yUnits) {
+int newCellPos(CellGrid *grid, CellPos *cp, int col, int row) {
+	if (col >= 0 && col < grid->xUnits &&
+		row >= 0 && row < grid->yUnits) {
 		cp->col = col;
 		cp->row = row;
 		return 1;
@@ -28,11 +20,11 @@ int newCellPos(CellPos *cp, int col, int row) {
 	return 0;
 }
 
-int setCellPos(CellPos* cp, int newCol, int newRow) {
+int setCellPos(CellGrid * grid, CellPos * cp, int newCol, int newRow) {
 	//printf("{%d, %d} -> to {%d, %d}\n", cp->col, cp->row, newCol, newRow);
 
-	if (newCol >= 0 && newCol < cp->grid->xUnits &&
-		newRow >= 0 && newRow < cp->grid->yUnits) {
+	if (newCol >= 0 && newCol < grid->xUnits &&
+		newRow >= 0 && newRow < grid->yUnits) {
 		cp->col = newCol;
 		cp->row = newRow;
 		return 0;
@@ -40,7 +32,7 @@ int setCellPos(CellPos* cp, int newCol, int newRow) {
 	return 1;
 }
 
-void setGridCellToVisited(CellPos * cp) {
-	setToVisitedFromGenerator(&cp->grid->field[cp->row][cp->col]);
+void setGridCellToVisited(CellGrid *grid, CellPos * cp) {
+	setToVisitedFromGenerator(&grid->field[cp->row][cp->col]);
 }
 
