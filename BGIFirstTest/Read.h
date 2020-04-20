@@ -2,7 +2,9 @@
 #include "grid.h"
 #include "MazeGenerator.h"
 #include "WelcomeScreen.h"
+#include "LoadingScreen.h"
 #include "GameScreen.h"
+#include "CountdownScreen.h"
 
 
 /*
@@ -14,13 +16,15 @@ enum gameState {
 	LEADERBOARD,
 	INITIALIZE_GAME_SCREEN_LEVEL_1,
 	GAME_SCREEN_LEVEL_1,
-	GENETARE_MAZE,
+	GENERATE_MAZE,
 	RUN,
 	POUSE,
-	QUIT
+	QUIT,
+	TEST_LOADING_SCREEN,
+	TEST_GAME_SCREEN
 };
 
-enum gameState globalState = INITIALIZE_GAME_SCREEN_LEVEL_1;
+enum gameState globalState = TEST_GAME_SCREEN;
 /*	Read state	*/
 
 void readKeyboard();
@@ -38,18 +42,20 @@ void readState() {
 	case LEADERBOARD:
 		//drawLeaderboard();
 		break;
-	case INITIALIZE_GAME_SCREEN_LEVEL_1: {
-		newGameScreen(20, 60, 20, 2, 2, 33, 20);
-		globalState = GAME_SCREEN_LEVEL_1;
-	}
 	case GAME_SCREEN_LEVEL_1:
+		newGameScreen(20, 20, 20, 0, 0, 33, 20);
+		drawCountdownScreen();
 		drawGameScreen();
-		readKeyboard();
+		waitForKeyPress();
 		break;
-	case GENETARE_MAZE:
-		newCellGrid(&grid, 20, 60, 20, 2, 2, 33, 20);
-		generateMaze(&grid);
-		globalState = RUN;
+	case TEST_LOADING_SCREEN:
+		drawLoadingScreen();
+		break;
+	case TEST_GAME_SCREEN:
+		newGameScreen(20, 20, 20, 0, 0, 33, 20);
+		drawCountdownScreen();
+		drawGameScreen();
+		waitForKeyPress();
 		break;
 	case RUN:
 		//drawGrid();

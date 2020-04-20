@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cell.c" />
+    <ClCompile Include="CountdownScreen.c" />
     <ClCompile Include="MazeRunner.c" />
     <ClCompile Include="openbgi-sources-1.5\openbgi\library\BGI.C" />
     <ClCompile Include="openbgi-sources-1.5\openbgi\library\Client.c" />
@@ -165,8 +166,12 @@
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CellPosition.h" />
     <ClInclude Include="CellPosStack.h" />
+    <ClInclude Include="CountdownScreen.h" />
+    <ClInclude Include="Counter.h" />
+    <ClInclude Include="GameHud.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="grid.h" />
+    <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="openbgi-sources-1.5\openbgi\library\graphics.h" />
     <ClInclude Include="Read.h" />

@@ -5,6 +5,7 @@
 #include <conio.h>
 #include <graphics.h>
 #include "Read.h"
+#include "Counter.h"
 
 #define HEIGHT 700
 #define WIDTH 1000
@@ -24,11 +25,10 @@ void initDriver() {
 }
 
 void setToNormalSettings() {
-	setcolor(rgb(130,130,130));
+	setcolor(rgb(255,255,255));
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 4);
 	settextjustify(LEFT_TEXT, LEFT_TEXT);
 }
-
 
 int main() {
 	initDriver();
@@ -46,6 +46,7 @@ int main() {
 		//setToNormalSettings();
 		setvisualpage(index);
 		index = !index;
+		incrGlobalCounter();
 	}
 	
 

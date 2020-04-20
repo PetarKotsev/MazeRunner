@@ -39,6 +39,9 @@
     <ClCompile Include="Cell.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CountdownScreen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="openbgi-sources-1.5\openbgi\library\graphics.h">
@@ -66,6 +69,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CellPosition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Counter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CountdownScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

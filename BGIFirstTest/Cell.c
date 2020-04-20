@@ -5,6 +5,7 @@
 *	Cell
 */
 static int __CellIndex = 0;
+static char __buff[40]; // for text printing
 
 typedef struct Cell {
 	int index;
@@ -51,8 +52,6 @@ bool isCellVisited(Cell * c) {
 
 /*	Draw walls  */
 
-static char __buff[40]; // for text printing
-
 void drawWalls(Cell *sq) {
 	if (sq->hasLeftWall)
 		line(sq->vertacies[0], sq->vertacies[1], sq->vertacies[2], sq->vertacies[3]);
@@ -73,6 +72,9 @@ void drawWalls(Cell *sq) {
 }
 
 void setToVisitedFromGenerator(Cell *c) {
+	if (c->visitedFromGenerator == true) {
+		printf("Setting a visited cell to visited a second time");
+	}
 	c->visitedFromGenerator = true;
 }
 

@@ -2,14 +2,16 @@
 #include "grid.h"
 #include "CellPosStack.h"
 #include "CellPosition.h"
+#include "Counter.h"
+#include "LoadingScreen.h"
 
 CellPos currentCurPos;
 CellPos nextCurPos;
 
-int setCursorPos(CellGrid *grid, CellPos* cp);
+int setCursorPos(CellGrid * grid, CellPos * cp);
 bool hasUnvisitedNeighbours(CellGrid * grid, CellPos * cp);
-void choseNeighbour(CellGrid * grid, CellPos * cp);
-void destroyWallBetween(CellGrid * grid, CellPos *from, CellPos *to);
+void choseNeighbour(CellGrid * grid, CellPos * cp, CellPos * np);
+void destroyWallBetween(CellGrid * grid, CellPos * from, CellPos * to);
 void generateMaze(CellGrid * grid);
 
 /*
@@ -33,7 +35,7 @@ void generateMaze(CellGrid * grid) {
 
 	bool index = true;
 
-	drawGrid(grid);
+	//drawGrid(grid);
 
 	while (!isEmpty(&stack)) {
 		/* Animation lines */
@@ -49,7 +51,7 @@ void generateMaze(CellGrid * grid) {
 			//ToDo: push CurrntCell to the stack
 			CellPos nextCurPos;
 			push(&stack, &currentCurPos);
-			choseNeighbour(grid, &nextCurPos);
+			choseNeighbour(grid, &currentCurPos, &nextCurPos);
 			destroyWallBetween(grid, &currentCurPos, &nextCurPos);
 			setGridCellToVisited(grid, &nextCurPos);
 			push(&stack, &nextCurPos);
@@ -57,13 +59,15 @@ void generateMaze(CellGrid * grid) {
 		}
 		setCursorPos(grid, &currentCurPos);
 
-		drawGrid(grid);
-		drawGridCell(grid, currentCurPos.col, currentCurPos.row, rgb(255, 255, 255));
+		//drawGrid(grid);
+		//drawGridCell(grid, currentCurPos.col, currentCurPos.row, rgb(255, 255, 255));
+
+		drawLoadingScreen();
+		incrGlobalCounter();
 
 		/* Animation statements */
 		setvisualpage(index);
 		index = !index;
-		//delay(5);
 	}
 }
 
@@ -101,7 +105,7 @@ bool hasUnvisitedNeighbours(CellGrid * grid, CellPos * cp) {
 	return counter > 0;
 }
 
-void choseNeighbour(CellGrid * grid,CellPos * cp) {
+void choseNeighbour(CellGrid * grid, CellPos * cp, CellPos * np) {
 	CellPos neig[4];
 	int counter = 0;
 	if (cp->row - 1 >= 0) { // UP
@@ -135,13 +139,13 @@ void choseNeighbour(CellGrid * grid,CellPos * cp) {
 
 	int randIndex = rand() % counter;
 	
-	cp->col = neig[randIndex].col;
-	cp->row = neig[randIndex].row;
+	np->col = neig[randIndex].col;
+	np->row = neig[randIndex].row;
 }
 
 void destroyWallBetween(CellGrid * grid, CellPos *from, CellPos * to) {
 	if (from->col > to->col) {
-		destroyCellWall(grid, from->col, from->col, LEFT_WALL);
+		destroyCellWall(grid, from->col, from->row, LEFT_WALL);
 		destroyCellWall(grid, to->col, to->row, RIGHT_WALL);
 	}
 	else if (from->col < to->col) {
