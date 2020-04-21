@@ -161,6 +161,7 @@
     <ClCompile Include="openbgi-sources-1.5\openbgi\library\graphics.c" />
     <ClCompile Include="openbgi-sources-1.5\openbgi\library\IPC.C" />
     <ClCompile Include="openbgi-sources-1.5\openbgi\library\Server.c" />
+    <ClCompile Include="PlayerSprite.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
@@ -174,11 +175,9 @@
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="openbgi-sources-1.5\openbgi\library\graphics.h" />
+    <ClInclude Include="PlayerSprite.h" />
     <ClInclude Include="Read.h" />
     <ClInclude Include="WelcomeScreen.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
