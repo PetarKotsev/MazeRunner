@@ -52,7 +52,7 @@ void readScreen() {
 		// ToDo
 		break;
 	case INITIALIZE_GAME_SCREEN_LEVEL_1:
-		newGameScreen(&gameScreen, 20, 20, 20, 0, 0, 5, 5);
+		newGameScreen(&gameScreen, 20, 20, 20, 0, 0, 33, 33);
 		drawCountdownScreen();
 		startGameScreenTimer(&gameScreen);
 		currentPage = GAME_SCREEN;
