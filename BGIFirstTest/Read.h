@@ -5,7 +5,8 @@
 #include "LoadingScreen.h"
 #include "GameScreen.h"
 #include "CountdownScreen.h"
-
+#include "WinScreen.h"
+#include "PouseScreen.h"
 
 /*
 *	Game state variables
@@ -22,6 +23,7 @@ enum screenView {
 	INITIALIZE_GAME_SCREEN_LEVEL_1,
 	GAME_SCREEN,
 	LEADERBOARD,
+	INITIALIZE_WIN_SCREEN,
 	WIN_SCREEN,
 	POUSE_SCREEN,
 	TEST_LOADING_SCREEN,
@@ -37,30 +39,39 @@ void waitForKeyPress();
 
 
 GameScreen gameScreen;
+WinScreen ws;
 
 void readScreen() {
 	switch (currentPage)
 	{
 	case WELCOME_SCREEN:
 		drawWelcomeScreen();
+		globalState = RUN;
 		break;
 	case LEADERBOARD:
 		// ToDo
 		break;
 	case INITIALIZE_GAME_SCREEN_LEVEL_1:
-		newGameScreen(&gameScreen, 20, 20, 20, 0, 0, 33, 33);
+		newGameScreen(&gameScreen, 20, 20, 20, 0, 0, 5, 5);
 		drawCountdownScreen();
 		startGameScreenTimer(&gameScreen);
-		globalState = RUN_N_WAIT;
 		currentPage = GAME_SCREEN;
 		break;
 	case GAME_SCREEN:
 		drawGameScreen(&gameScreen);
+		globalState = RUN_N_WAIT;
+		break;
+	case INITIALIZE_WIN_SCREEN:
+		printf("%d", gameScreen.endTime);
+		newWinScreen(&ws, gameScreen.endTime);
+		currentPage = WIN_SCREEN;
 		break;
 	case WIN_SCREEN:
+		drawWinScreen(&ws);
+		globalState = RUN;
 		break;
 	case POUSE_SCREEN:
-		// ToDo
+		drawPouseScreen();
 		break;
 	case TEST_LOADING_SCREEN:
 		drawLoadingScreen();
@@ -80,13 +91,13 @@ void readState() {
 	switch (globalState)
 	{
 	case RUN:
-		readScreen();
 		readKeyboard();
+		readScreen();
 		delay(50);
 		break;
 	case RUN_N_WAIT:
-		readScreen();
 		waitForKeyPress();
+		readScreen();
 		break;
 	case POUSE:
 		readScreen();
@@ -131,6 +142,18 @@ void keyboardHendler() {
 				break;
 			}
 		}
+		if (currentPage == WIN_SCREEN) {
+			switch (c)
+			{
+			case 32: // Space
+				currentPage = WELCOME_SCREEN;
+				break;
+			case 27: 
+				globalState = QUIT;
+				currentPage = QUIT;
+				break;
+			}
+		}
 	}
 	else if (globalState == RUN_N_WAIT) {
 		if (currentPage == GAME_SCREEN) {
@@ -140,19 +163,28 @@ void keyboardHendler() {
 			case 87:
 				move = UP;
 				movePlayer(&gameScreen, move);
-				checkGoal(&gameScreen);
+				if (checkGoal(&gameScreen)) {
+					globalState = RUN;
+					currentPage = INITIALIZE_WIN_SCREEN;
+				}
 				break;
 			case 100: // pressed d or D
 			case 68:
 				move = RIGHT;
 				movePlayer(&gameScreen, move);
-				checkGoal(&gameScreen);
+				if (checkGoal(&gameScreen)) {
+					globalState = RUN;
+					currentPage = INITIALIZE_WIN_SCREEN;
+				}
 				break;
 			case 97: // pressed a or A
 			case 65:
 				move = LEFT;
 				movePlayer(&gameScreen, move);
-				checkGoal(&gameScreen);
+				if (checkGoal(&gameScreen)) {
+					globalState = RUN;
+					currentPage = INITIALIZE_WIN_SCREEN;
+				}
 
 				break;
 			case 115: // pressed s ot S
@@ -160,7 +192,8 @@ void keyboardHendler() {
 				move = DOWN;
 				movePlayer(&gameScreen, move);
 				if (checkGoal(&gameScreen)) {
-					currentPage = WIN_SCREEN;
+					globalState = RUN;
+					currentPage = INITIALIZE_WIN_SCREEN;
 				}
 				break;
 			case 32: // Space
@@ -180,6 +213,7 @@ void keyboardHendler() {
 				break;
 			case 27: // ESC
 				globalState = QUIT;
+				currentPage = QUIT;
 			default:
 				break;
 			}

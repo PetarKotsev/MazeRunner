@@ -1,7 +1,6 @@
 #include "graphics.h"
 
 void drawCountdownScreen() {
-	printf("hello\n");
 	clearviewport();
 	int midx = getmaxx() / 2;
 	int midy = getmaxy() / 2;
@@ -27,4 +26,5 @@ void drawCountdownScreen() {
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 100);
 	outtextxy(midx, midy - 50, "1");
 	delay(1000);
+	clearviewport();
 }

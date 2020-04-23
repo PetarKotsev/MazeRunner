@@ -12,6 +12,7 @@ typedef struct GameScreen{
 	Player player;
 	Goal goal;
 	GameTimer timer;
+	int endTime;
 } GameScreen;
 
 GameScreen* newGameScreen(GameScreen* gs, int xPos, int yPos, int sideLength, int spacingX, int spaceingY, int xUnits, int yUnits) {
@@ -45,7 +46,6 @@ void movePlayer(GameScreen* gs, int move) {
 			setCellPos(&gs->grid, &gs->player.gp, gs->player.gp.col, gs->player.gp.row - 1);
 			setPlayerPos(&gs->player, &gs->grid, &gs->player.gp);
 		}
-		
 		break;
 	case 1: // right
 		if (!isWallInDir(&gs->grid, gs->player.gp.col, gs->player.gp.row, move)) {
@@ -66,10 +66,12 @@ void movePlayer(GameScreen* gs, int move) {
 		}
 		break;
 	}
+
 }
 
 bool checkGoal(GameScreen* gs) {
 	if (gs->player.gp.col == gs->goal.gp.col && gs->player.gp.row == gs->goal.gp.row) {
+		gs->endTime = checkTimer(&gs->timer.timer);
 		return true;
 	}
 	return false;

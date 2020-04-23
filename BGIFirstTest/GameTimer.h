@@ -9,10 +9,6 @@ void startGameTimer(GameTimer* t) {
 	startTimer(&t->timer);
 }
 
-void endTimer(GameTimer* t) {
-	endTimer(&t->timer);
-}
-
 void drawGameTimer(GameTimer* t) {
 	char buff[9];
 	int hours   = checkTimer(&t->timer) / 3600;

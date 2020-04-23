@@ -168,6 +168,8 @@
     <ClInclude Include="CellPosStack.h" />
     <ClInclude Include="CountdownScreen.h" />
     <ClInclude Include="Counter.h" />
+    <ClInclude Include="PouseScreen.h" />
+    <ClInclude Include="WinScreen.h" />
     <ClInclude Include="GameHud.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="GameTimer.h" />
