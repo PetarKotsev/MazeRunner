@@ -24,7 +24,7 @@ typedef struct Point
 } Point;
 
 
-typedef enum {
+typedef enum WallDir{
 	TOP_WALL = 0,
 	RIGHT_WALL = 1,
 	BOTTOM_WALL = 2,
@@ -116,12 +116,29 @@ void destroyCellWall(CellGrid * grid, int col, int row, WallDir WallIndex) {
 	}
 }
 
+bool isWallInDir(CellGrid* grid, int col, int row, int dir) {
+	switch (dir)
+	{
+	case 0:
+		return grid->field[row][col].hasTopWall;
+		break;
+	case 1:
+		return grid->field[row][col].hasRightWall;
+		break;
+	case 2:
+		return grid->field[row][col].hasBottomWall;
+		break;
+	case 3:
+		return grid->field[row][col].hasLeftWall;
+		break;
+	}
+}
+
 
 /*
 *	Draw grid
 */
 void drawGrid(CellGrid * grid) {
-	//	printf("RUN\n");
 	int lastColor = getcolor();
 	setcolor(rgb(200,200,200));
 	for (int i = 0; i < grid->yUnits; i++) {

@@ -32,13 +32,13 @@ Player* setPlayer(Player* pl, CellGrid* grid, int col, int row) {
 	pl->color = rgb(200, 50, 50);
 }
 
-Player* setPlayerPos(Player* pl, CellGrid* grid, int col, int row) {
+Player* setPlayerPos(Player* pl, CellGrid* grid, CellPos* cp) {
 	CellPos gp;
-	newCellPos(grid, &gp, col, row);
+	newCellPos(grid, &gp, cp->col, cp->row);
 	pl->gp = gp;
-	pl->xPos = grid->field[col][row].xPos;
-	pl->yPos = grid->field[col][row].yPos;
-	int playercharSideL = grid->field[col][row].dis - 1;
+	pl->xPos = grid->field[cp->row][cp->col].xPos;
+	pl->yPos = grid->field[cp->row][cp->col].yPos;
+	int playercharSideL = grid->field[cp->row][cp->col].dis - 1;
 	pl->vertacies[0] = pl->xPos + 1;
 	pl->vertacies[1] = pl->yPos + 1;
 	pl->vertacies[2] = pl->xPos + 1;

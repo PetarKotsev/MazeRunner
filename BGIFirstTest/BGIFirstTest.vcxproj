@@ -170,12 +170,14 @@
     <ClInclude Include="Counter.h" />
     <ClInclude Include="GameHud.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Goal.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="openbgi-sources-1.5\openbgi\library\graphics.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Read.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="WelcomeScreen.h" />
   </ItemGroup>
   <ItemGroup>
