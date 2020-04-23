@@ -43,7 +43,7 @@ void readState() {
 		//drawLeaderboard();
 		break;
 	case GAME_SCREEN_LEVEL_1:
-		newGameScreen(20, 20, 20, 0, 0, 33, 20);
+		newGameScreen(20, 20, 20, 0, 0, 33, 33);
 		drawCountdownScreen();
 		drawGameScreen();
 		waitForKeyPress();
@@ -52,7 +52,7 @@ void readState() {
 		drawLoadingScreen();
 		break;
 	case TEST_GAME_SCREEN:
-		newGameScreen(20, 20, 20, 0, 0, 33, 20);
+		newGameScreen(20, 20, 20, 0, 0, 33, 33);
 		drawCountdownScreen();
 		drawGameScreen();
 		waitForKeyPress();

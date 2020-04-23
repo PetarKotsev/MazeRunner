@@ -2,6 +2,7 @@
 #include "grid.h"
 #include "MazeGenerator.h"
 #include "GameHud.h"
+#include "Player.h"
 
 CellGrid grid;
 
@@ -16,4 +17,12 @@ void newGameScreen(int xPos, int yPos, int sideLength, int spacingX, int spacein
 void drawGameScreen() {
 	drawGrid(&grid);
 	drawGameHud();
+
+	// Make a player
+	Player pl;
+	setPlayer(&pl, &grid, 0, 0);
+
+	//draw player
+	drawPlayer(&pl);
 }
+
