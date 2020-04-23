@@ -50,6 +50,8 @@ void readScreen() {
 	case INITIALIZE_GAME_SCREEN_LEVEL_1:
 		newGameScreen(&gameScreen, 20, 20, 20, 0, 0, 33, 33);
 		drawCountdownScreen();
+		startGameScreenTimer(&gameScreen);
+		globalState = RUN_N_WAIT;
 		currentPage = GAME_SCREEN;
 		break;
 	case GAME_SCREEN:
@@ -84,6 +86,7 @@ void readState() {
 		break;
 	case RUN_N_WAIT:
 		readScreen();
+		waitForKeyPress();
 		break;
 	case POUSE:
 		readScreen();
@@ -128,30 +131,32 @@ void keyboardHendler() {
 				break;
 			}
 		}
-		else if (currentPage == GAME_SCREEN) {
+	}
+	else if (globalState == RUN_N_WAIT) {
+		if (currentPage == GAME_SCREEN) {
 			switch (c)
 			{
 			case 119: // pressed w or W
-			case 87:	
+			case 87:
 				move = UP;
 				movePlayer(&gameScreen, move);
 				checkGoal(&gameScreen);
 				break;
 			case 100: // pressed d or D
-			case 68:	
+			case 68:
 				move = RIGHT;
 				movePlayer(&gameScreen, move);
 				checkGoal(&gameScreen);
 				break;
 			case 97: // pressed a or A
-			case 65:	
+			case 65:
 				move = LEFT;
 				movePlayer(&gameScreen, move);
 				checkGoal(&gameScreen);
 
 				break;
 			case 115: // pressed s ot S
-			case 83:	
+			case 83:
 				move = DOWN;
 				movePlayer(&gameScreen, move);
 				if (checkGoal(&gameScreen)) {

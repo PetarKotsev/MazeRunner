@@ -170,6 +170,7 @@
     <ClInclude Include="Counter.h" />
     <ClInclude Include="GameHud.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="GameTimer.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="LoadingScreen.h" />
