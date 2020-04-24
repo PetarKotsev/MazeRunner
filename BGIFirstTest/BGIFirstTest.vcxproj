@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="scores.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cell.c" />
@@ -168,7 +169,8 @@
     <ClInclude Include="CellPosStack.h" />
     <ClInclude Include="CountdownScreen.h" />
     <ClInclude Include="Counter.h" />
-    <ClInclude Include="PouseScreen.h" />
+    <ClInclude Include="File_Read_Write.h" />
+    <ClInclude Include="PauseScreen.h" />
     <ClInclude Include="WinScreen.h" />
     <ClInclude Include="GameHud.h" />
     <ClInclude Include="GameScreen.h" />
@@ -179,7 +181,7 @@
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="openbgi-sources-1.5\openbgi\library\graphics.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Read.h" />
+    <ClInclude Include="GameFrame.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="WelcomeScreen.h" />
   </ItemGroup>

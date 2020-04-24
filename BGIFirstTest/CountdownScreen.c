@@ -6,7 +6,7 @@ void drawCountdownScreen() {
 	int midy = getmaxy() / 2;
 	settextjustify(CENTER_TEXT, CENTER_TEXT);
 
-
+	rectangle(20, 20, 980, 680);
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 60);
 	outtextxy(midx, midy - 150, "Starting in:");
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 100);
@@ -14,6 +14,7 @@ void drawCountdownScreen() {
 	delay(1000);
 	clearviewport();
 
+	rectangle(20, 20, 980, 680);
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 60);
 	outtextxy(midx, midy - 150, "Starting in:");
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 100);
@@ -21,6 +22,7 @@ void drawCountdownScreen() {
 	delay(1000);
 	clearviewport();
 
+	rectangle(20, 20, 980, 680);
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 60);
 	outtextxy(midx, midy - 150, "Starting in:");
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 100);

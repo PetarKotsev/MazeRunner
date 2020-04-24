@@ -13,6 +13,10 @@ bool hasUnvisitedNeighbours(CellGrid * grid, CellPos * cp);
 void choseNeighbour(CellGrid * grid, CellPos * cp, CellPos * np);
 void destroyWallBetween(CellGrid * grid, CellPos * from, CellPos * to);
 void generateMaze(CellGrid * grid);
+static void drawLoadingMazeGen();
+static void drawMazeGen(CellGrid* grid);
+
+
 
 /*
 *	Define methods 
@@ -20,8 +24,10 @@ void generateMaze(CellGrid * grid);
 
 void generateMaze(CellGrid * grid) {
 	srand(time(NULL));
-	newCellPos(grid, &currentCurPos, 0 , 0); // setting the initial start Cell
-	/*setToVisitedFromGenerator(getCellAtPosition(grid, &currentCurPos));*/ 
+	int randomXStartPos = rand() % grid->xUnits, 
+		randomYStartPos = rand() % grid->yUnits;
+	newCellPos(grid, &currentCurPos, randomXStartPos , randomYStartPos); // setting the initial start Cell
+
 	setGridCellToVisited(grid, &currentCurPos);  // Setting current Cell to visited
 
 	//Initialize stack
@@ -35,7 +41,6 @@ void generateMaze(CellGrid * grid) {
 
 	bool index = true;
 
-	//drawGrid(grid);
 
 	while (!isEmpty(&stack)) {
 		/* Animation lines */
@@ -59,11 +64,9 @@ void generateMaze(CellGrid * grid) {
 		}
 		setCursorPos(grid, &currentCurPos);
 
-		//drawGrid(grid);
-		//drawGridCell(grid, currentCurPos.col, currentCurPos.row, rgb(255, 255, 255));
 
-		drawLoadingScreen();
-		incrGlobalCounter();
+		drawLoadingMazeGen();
+		
 
 		/* Animation statements */
 		setvisualpage(index);
@@ -73,6 +76,16 @@ void generateMaze(CellGrid * grid) {
 
 int setCursorPos(CellGrid * grid, CellPos * cp) {
 	return setCellPos(grid, &currentCurPos, cp->col, cp->row);
+}
+
+static void drawLoadingMazeGen() {
+	drawLoadingScreen();
+	incrGlobalCounter();
+}
+
+static void drawMazeGen(CellGrid* grid) {
+	drawGrid(grid);
+	drawGridCell(grid, currentCurPos.col, currentCurPos.row, rgb(255, 255, 255));
 }
 
 bool hasUnvisitedNeighbours(CellGrid * grid, CellPos * cp) {

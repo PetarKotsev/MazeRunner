@@ -13,9 +13,13 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="temp">
+      <UniqueIdentifier>{933df55a-a441-4d70-807d-65fd914b34f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="scores.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openbgi-sources-1.5\openbgi\library\BGI.C">
@@ -54,9 +58,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Read.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MazeGenerator.h">
@@ -98,7 +99,13 @@
     <ClInclude Include="WinScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PouseScreen.h">
+    <ClInclude Include="File_Read_Write.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

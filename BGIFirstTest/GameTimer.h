@@ -14,6 +14,6 @@ void drawGameTimer(GameTimer* t) {
 	int hours   = checkTimer(&t->timer) / 3600;
 	int minutes = checkTimer(&t->timer) % 3600 / 60;
 	int seconds = checkTimer(&t->timer) % 60;
-	sprintf_s(buff, 9, "%2d %2d %2d", hours, minutes, seconds);
-	outtextxy(840, 145, buff);
+	sprintf_s(buff, 9, "%2d:%2d:%2d", hours, minutes, seconds);
+	outtextxy(825, 145, buff);
 }

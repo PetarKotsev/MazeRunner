@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <conio.h>
 #include <graphics.h>
-#include "Read.h"
+#include "GameFrame.h"
 #include "Counter.h"
 
 #define HEIGHT 700
@@ -13,7 +14,6 @@
 /*
 *	Initialize grahs. drivers
 */
-static bool index = true;
 void initDriver() {
 	int gd = CUSTOM,
 		gm = CUSTOM_MODE(WIDTH, HEIGHT);
@@ -24,16 +24,13 @@ void initDriver() {
 	setbkcolor(rgb(93, 64, 55));
 }
 
-void setToNormalSettings() {
-	setcolor(rgb(255,255,255));
-	settextstyle(COMPLEX_FONT, HORIZ_DIR, 4);
-	settextjustify(LEFT_TEXT, LEFT_TEXT);
-}
-
 int main() {
 	initDriver();
 
-	readState();
+	GameFrame gf;
+	newGameFrame(&gf);
+
+	readState(&gf);
 
 	bool index = true;
 
@@ -41,9 +38,8 @@ int main() {
 		setactivepage(index);
 		clearviewport();
 
-		readState();
+		readState(&gf);
 
-		//setToNormalSettings();
 		setvisualpage(index);
 		index = !index;
 		incrGlobalCounter();
