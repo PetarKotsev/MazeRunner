@@ -64,11 +64,6 @@ void drawWalls(Cell *sq) {
 
 	if (sq->hasTopWall)
 		line(sq->vertacies[6], sq->vertacies[7], sq->vertacies[0], sq->vertacies[1]);
-
-	//printf("Cell -> %d\n", sq->index);
-
-	//snprintf(__buff, 40, "%d", sq->index);
-	//outtextxy(sq->xPos + 1, sq->yPos + 1, __buff);
 }
 
 void setToVisitedFromGenerator(Cell *c) {

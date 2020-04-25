@@ -52,9 +52,6 @@ bool isFull(CellPosStack * cellPosStack) {
 }
 
 CellPos * peek(CellPosStack * cellPosStack) {
-	/*CellPos t;
-	setCellPos(cellPosStack->grid, &t, cellPosStack->stack[cellPosStack->top].col, cellPosStack->stack[cellPosStack->top].row);
-	return &t;*/
 	return (&cellPosStack->stack[cellPosStack->top]);
 }
 

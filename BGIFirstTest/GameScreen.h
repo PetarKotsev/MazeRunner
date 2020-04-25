@@ -19,7 +19,6 @@ GameScreen* newGameScreen(GameScreen* gs, int xPos, int yPos, int sideLength, in
 	newCellGrid(&gs->grid, xPos, yPos, sideLength, spacingX, spaceingY, xUnits, yUnits);
 	setPlayer(&gs->player, &gs->grid, 0, 0);
 	setGoal(&gs->goal, &gs->grid, gs->grid.xUnits - 1, gs->grid.yUnits - 1);
-	// timer is not restarted of the same variable is reused -> look at reed.h line 41 and f
 	generateMaze(&gs->grid);
 	clearviewport();
 }

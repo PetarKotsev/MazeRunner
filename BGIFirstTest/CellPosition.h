@@ -21,7 +21,6 @@ int newCellPos(CellGrid *grid, CellPos *cp, int col, int row) {
 }
 
 int setCellPos(CellGrid * grid, CellPos * cp, int newCol, int newRow) {
-	//printf("{%d, %d} -> to {%d, %d}\n", cp->col, cp->row, newCol, newRow);
 
 	if (newCol >= 0 && newCol < grid->xUnits &&
 		newRow >= 0 && newRow < grid->yUnits) {

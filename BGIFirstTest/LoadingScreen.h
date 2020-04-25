@@ -3,8 +3,6 @@
 
 void drawLoadingScreen() {
 	drawGameHud();
-
-	//settextjustify(CENTER_TEXT, CENTER_TEXT);
 	settextstyle(0, 0, 25);
 
 	switch (getGlobalCounter() / 100 % 4)
