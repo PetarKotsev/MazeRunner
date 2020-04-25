@@ -14,16 +14,6 @@ typedef struct {
 	Cell **field;
 } CellGrid;
 
-
-/* Point variable */
-
-typedef struct Point
-{
-	int x;
-	int y;
-} Point;
-
-
 typedef enum WallDir{
 	TOP_WALL = 0,
 	RIGHT_WALL = 1,

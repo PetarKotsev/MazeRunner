@@ -41,6 +41,7 @@ enum moveDir {
 	NONE = 4
 };
 
+/* Game Frame structure and constructor method*/
 typedef struct GameFrame {
 	enum moveDir move;
 	enum gameState frameState;
@@ -55,13 +56,15 @@ GameFrame* newGameFrame(GameFrame* gf) {
 	gf->currentPage = WELCOME_SCREEN;
 }
 
-/*	Read state	*/
+/*	Function initializations  */
 static void readKeyboard(GameFrame* gf);
 static void waitForKeyPress(GameFrame* gf);
 static void readScreenState(GameFrame* gf);
 static void keyboardHendler(GameFrame* gf);
 void readState(GameFrame* gf);
 
+
+/*  Function definitions  */
 static void readScreenState(GameFrame* gf) {
 	switch (gf->currentPage)
 	{
